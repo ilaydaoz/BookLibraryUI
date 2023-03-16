@@ -1,0 +1,67 @@
+<h1>Kayıt Oluşturun</h1>
+
+<h2>{{responseMsg}}</h2>
+
+<mat-grid-list cols="2" rowHeight="100px" gutterSize="10px" >[formGroup]="registerForm"
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>İsim</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-error *ngIf="this.FirstName.invalid">{{getFirstNameErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Soyisim</mat-label>
+            <input matInput formControlName="lastName">
+            <mat-error *ngIf="this.LastName.invalid">{{getLastNameErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="this.Email.invalid">{{getEmailErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Şifre</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="this.Password.invalid">{{getPasswordErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="accent">
+            <mat-label>Şifreyi tekrar girin</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="rpassword">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="this.RPassword.hasError('rpassword')">
+                Şifre ile aynı olmalıdır.
+            </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2">
+        <button mat-flat-button color="accent" class="create-account-btn" (click)="register()"
+                [disabled]="registerForm.invalid">Hesap oluşturun</button>
+     </mat-grid-tile>
+
+</mat-grid-list>
+
+<div class="login-link">
+    <span>Zaten hesabınız var mı?</span>
+    <button mat-stroked-button color="accent" routerLink="/login">Giriş</button>
+</div>            
+        
+   
